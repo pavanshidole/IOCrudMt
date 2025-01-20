@@ -25,7 +25,7 @@ export class StdChildComponent implements OnInit {
       let removeId=this.getstdArr.findIndex(stdObj=> stdObj.stdId===std.stdId);
       this.getstdArr.splice(removeId,1);
       localStorage.setItem('stdarr',JSON.stringify(this.getstdArr))
-      this._snackbar.openSnackbar(`in student table ${std.fname}  ${std.fname}student information is updated successfully`)
+      this._snackbar.openSnackbar(`in student table ${std.fname}  ${std.lname}student information is updated successfully`)
     }
   }
 

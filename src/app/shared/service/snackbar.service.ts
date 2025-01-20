@@ -10,5 +10,11 @@ export class SnackbarService {
     private _snackbarService:MatSnackBar
   ){}
 
-  
+  openSnackbar(msg:string){
+    this._snackbarService.open(msg,`close`,{
+      horizontalPosition:'left',
+      verticalPosition:'top',
+      duration:3000
+    })
+  }
 }

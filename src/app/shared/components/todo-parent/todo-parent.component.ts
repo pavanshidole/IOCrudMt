@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Itodos } from '../../model/todo';
 import { NgForm } from '@angular/forms';
 import { JsonPipe } from '@angular/common';
+import { SnackbarService } from '../../service/snackbar.service';
 
 @Component({
   selector: 'app-todo-parent',
@@ -10,7 +11,9 @@ import { JsonPipe } from '@angular/common';
 })
 export class TodoParentComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private _snackbar:SnackbarService
+  ){}
 
   isHide !:boolean 
 
@@ -55,6 +58,7 @@ export class TodoParentComponent implements OnInit {
       this.todoArr.push(newTodoObj);
       localStorage.setItem('todoarr',JSON.stringify(this.todoArr));
       this.todoform.reset()
+      this._snackbar.openSnackbar(`in todolist todoitem ${newTodoObj.todoItem} is added successfully`)
     }
   }
 
@@ -74,6 +78,7 @@ export class TodoParentComponent implements OnInit {
     this.isHide=false;
     localStorage.setItem('todoarr',JSON.stringify(this.todoArr));
     this.todoform.reset();
+    this._snackbar.openSnackbar(`in todolist todoitem ${ newUpdateObj.todoItem} is updated successfully`)
   }
 
 }

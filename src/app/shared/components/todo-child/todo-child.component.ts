@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Itodos } from '../../model/todo';
+import { SnackbarService } from '../../service/snackbar.service';
 
 @Component({
   selector: 'app-todo-child',
@@ -8,7 +9,9 @@ import { Itodos } from '../../model/todo';
 })
 export class TodoChildComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private _snackbar:SnackbarService
+  ){}
 
   ngOnInit(): void {
   }
@@ -25,6 +28,7 @@ export class TodoChildComponent implements OnInit {
       this.getTodoArr.splice(removeId,1);
       
       localStorage.setItem('todoarr',JSON.stringify(this.getTodoArr));
+      this._snackbar.openSnackbar(`in todolist ${todo.todoItem} todoitem is removed successfully`)
     }
   }
 

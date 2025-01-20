@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Istd } from '../../model/std';
 import { NgForm } from '@angular/forms';
 import { JsonPipe } from '@angular/common';
+import { SnackbarService } from '../../service/snackbar.service';
 
 @Component({
   selector: 'app-std-parent',
@@ -11,7 +12,9 @@ import { JsonPipe } from '@angular/common';
 export class StdParentComponent implements OnInit {
 
   isHide !:boolean
-  constructor() { }
+  constructor(
+    private _snackbar:SnackbarService
+  ){}
 
   ngOnInit(): void {
    const stdArray=localStorage.getItem('stdarr');
@@ -49,6 +52,7 @@ export class StdParentComponent implements OnInit {
       this.stdArr.push(newStdObj);
       localStorage.setItem('stdarr',JSON.stringify(this.stdArr));
       this.stdForm.reset();
+      this._snackbar.openSnackbar(`in student table ${newStdObj.fname}  ${newStdObj.fname}student information is added successfully`)
     }
   }
 
@@ -68,6 +72,8 @@ export class StdParentComponent implements OnInit {
       this.isHide=false;
       localStorage.setItem('stdarr',JSON.stringify(this.stdArr));
       this.stdForm.reset();
+
+      this._snackbar.openSnackbar(`in student table ${newUpdateObj.fname}  ${newUpdateObj.fname}student information is updated successfully`)
     }
 
 }

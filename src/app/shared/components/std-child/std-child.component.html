@@ -1,0 +1,37 @@
+<div class="table-responsive">
+    <table 
+    *ngIf="getstdArr.length > 0; else noStd"
+    class="table table-bordered bg-warning text-dark">
+        <thead>
+            <tr>
+                <th>Sr.No</th>
+                <th>fname</th>
+                <th>lname</th>
+                <th>email</th>
+                <th>contact</th>
+                <th>Edit</th>
+                <th>Remove</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let std of getstdArr; let i=index">
+                <td>{{i+1}}</td>
+                <td>{{std.fname}}</td>
+                <td>{{std.lname}}</td>
+                <td>{{std.email}}</td>
+                <td>{{std.contact}}</td>
+                <td>
+                    <button (click)="onEdit(std)"  class="btn btn-sm btn-primary mr-3">Edit</button>
+                </td>
+                <td>
+                    <button (click)="onRemove(std)"  class="btn btn-sm btn-danger">Remove</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<ng-template #noStd>
+    <p class="alert alert-danger">in student table in student info is not available !!</p>
+</ng-template>
+

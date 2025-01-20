@@ -1,0 +1,44 @@
+
+<div class="row">
+    <div class="col-md-6 mb-4 mb-md-0">
+        <div class="card bg-dark text-white">
+            <div class="card-body">
+                <form #todoform="ngForm" (ngSubmit)="onSubmit()">
+                    <div class="form-group">
+                        <label for="todoItem">todoItem</label>
+                        <input type="text" name="todoItem" required ngModel
+                        #todoItem="ngModel" pattern="[a-zA-z]+" class="form-control" id="todoItem">
+
+                        <strong 
+                        *ngIf="todoItem.touched && todoItem.hasError('required')"
+                        class="text-danger">
+                            todoItem is required field error 
+                        </strong>
+
+                        <strong 
+                        *ngIf="todoItem.dirty && todoItem.hasError('pattern')"
+                        class="text-danger">
+                            todoItem input control user shouldn't enter digit number and special character
+                        </strong>
+                    </div>
+                    <button type="submit"
+                    [ngClass]="{
+                        'd-none':isHide
+                    }"
+                     class="btn btn-sm btn-block btn-outline-primary">Add Todo
+                    </button>
+
+                    <button type="button" (click)="onUpdate()"
+                    [ngClass]="{
+                        'd-none': !isHide
+                    }"
+                     class="btn btn-sm btn-block btn-outline-primary">Update Todo
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <app-todo-child [getTodoArr]="todoArr" (EditObj)="onEdit($event)"></app-todo-child>
+    </div>
+</div>

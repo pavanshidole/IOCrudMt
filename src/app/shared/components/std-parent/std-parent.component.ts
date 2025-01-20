@@ -52,7 +52,7 @@ export class StdParentComponent implements OnInit {
       this.stdArr.push(newStdObj);
       localStorage.setItem('stdarr',JSON.stringify(this.stdArr));
       this.stdForm.reset();
-      this._snackbar.openSnackbar(`in student table ${newStdObj.fname}  ${newStdObj.lname}student information is added successfully`)
+      this._snackbar.openSnackbar(`in student table ${newStdObj.fname}  ${newStdObj.lname} student information is added successfully`)
     }
   }
 
@@ -73,7 +73,7 @@ export class StdParentComponent implements OnInit {
       localStorage.setItem('stdarr',JSON.stringify(this.stdArr));
       this.stdForm.reset();
 
-      this._snackbar.openSnackbar(`in student table ${newUpdateObj.fname}  ${newUpdateObj.lname}student information is updated successfully`)
+      this._snackbar.openSnackbar(`in student table ${newUpdateObj.fname}  ${newUpdateObj.lname} student information is updated successfully`)
     }
 
 }
